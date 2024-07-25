@@ -17,6 +17,7 @@ image:
   cartservicetag: "10096881924"
   emailservicetag: "10097204298"
   recommendationservicetag: "10097393658"
+  loadgeneratortag: ""
 
 imagePullSecrets: []
 nameOverride: ""
