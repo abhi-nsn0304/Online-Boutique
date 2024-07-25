@@ -23,12 +23,12 @@ COPY src/productcatalogservice .
 
 # Skaffold passes in debug-oriented compiler flags
 ARG SKAFFOLD_GO_GCFLAGS
-RUN CGO_ENABLED=0 GOOS=linux go build -gcflags="${SKAFFOLD_GO_GCFLAGS}" -o /productcatalogservicebinary .
+RUN CGO_ENABLED=0 GOOS=linux go build -gcflags="${SKAFFOLD_GO_GCFLAGS}" -o /go/bin/productcatalogservicebinary .
 
 FROM scratch
 
 WORKDIR /src
-COPY --from=builder /src/productcatalogservicebinary ./server
+COPY --from=builder /go/bin/productcatalogservicebinary ./server
 COPY --from=builder /src/products.json .
 
 # Definition of this variable is used by 'skaffold debug' to identify a golang binary.
