@@ -19,7 +19,7 @@ WORKDIR /src
 COPY src/frontend/go.mod ./
 COPY src/frontend/go.sum ./
 RUN go mod download
-COPY . .
+COPY src/frontend .
 
 # Skaffold passes in debug-oriented compiler flags
 ARG SKAFFOLD_GO_GCFLAGS
