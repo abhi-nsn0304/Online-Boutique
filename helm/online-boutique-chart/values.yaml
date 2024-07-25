@@ -13,7 +13,7 @@ image:
   shippingservicetag: "10086867792"
   checkoutservicetag: "10087022992"
   currencyservicetag: "10095968644"
-  paymentservicetag: ""
+  paymentservicetag: "10096215857"
 
 imagePullSecrets: []
 nameOverride: ""
