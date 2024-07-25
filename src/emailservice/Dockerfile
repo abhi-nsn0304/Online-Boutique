@@ -22,7 +22,7 @@ RUN apt-get -qq update \
     && rm -rf /var/lib/apt/lists/*
 
 # get packages
-COPY requirements.txt .
+COPY src/emailservice/requirements.txt .
 RUN pip install -r requirements.txt
 
 FROM base
@@ -37,7 +37,7 @@ WORKDIR /email_server
 COPY --from=builder /usr/local/lib/python3.12/ /usr/local/lib/python3.12/
 
 # Add the application
-COPY . .
+COPY ./src/emailservice/ .
 
 EXPOSE 8080
 ENTRYPOINT [ "python", "email_server.py" ]
