@@ -9,7 +9,7 @@ image:
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   frontendtag: "10086913566"
-  productcatalogservicetag: "10086690733"
+  productcatalogservicetag: "10087057926"
   shippingservicetag: "10086867792"
   checkoutservicetag: "10087022992"
 
