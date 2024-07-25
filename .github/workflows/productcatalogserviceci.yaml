@@ -8,6 +8,7 @@ on:
     paths-ignore:
       - 'helm/**'
       - 'k8s/**'
+      - '.github/workflows/**'
       - 'README.md'
       - 'src/adservice/**'
       - 'src/cartservice/**'

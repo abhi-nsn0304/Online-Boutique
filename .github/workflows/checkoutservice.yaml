@@ -1,4 +1,4 @@
-name: frontendci
+name: checkoutserviceci
 
 # Exclude the workflow to run on changes to the helm chart
 on:
@@ -8,6 +8,7 @@ on:
     paths-ignore:
       - 'helm/**'
       - 'k8s/**'
+      - '.github/workflows/**'
       - 'README.md'
       - 'src/adservice/**'
       - 'src/cartservice/**'
