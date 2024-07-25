@@ -11,6 +11,7 @@ image:
   frontendtag: "10086662805"
   productcatalogservicetag: "10086690733"
   shippingservicetag: "10086587574"
+  checkoutservicetag: ""
 
 imagePullSecrets: []
 nameOverride: ""

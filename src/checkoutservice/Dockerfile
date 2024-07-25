@@ -16,19 +16,20 @@ FROM golang:1.22.5-alpine@sha256:8c9183f715b0b4eca05b8b3dbf59766aaedb41ec07477b1
 WORKDIR /src
 
 # restore dependencies
-COPY go.mod go.sum ./
+COPY src/checkoutservice/go.mod ./
+COPY src/checkoutservice/go.sum ./
 RUN go mod download
 
-COPY . .
+COPY src/checkoutservice .
 
 # Skaffold passes in debug-oriented compiler flags
 ARG SKAFFOLD_GO_GCFLAGS
-RUN CGO_ENABLED=0 GOOS=linux go build -gcflags="${SKAFFOLD_GO_GCFLAGS}" -o /checkoutservice .
+RUN CGO_ENABLED=0 GOOS=linux go build -gcflags="${SKAFFOLD_GO_GCFLAGS}" -o /go/bin/checkoutservice .
 
 FROM scratch
 
 WORKDIR /src
-COPY --from=builder /checkoutservice /src/checkoutservice
+COPY --from=builder /go/bin/checkoutservice /src/checkoutservice
 
 # Definition of this variable is used by 'skaffold debug' to identify a golang binary.
 # Default behavior - a failure prints a stack trace for the current goroutine.

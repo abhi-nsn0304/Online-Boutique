@@ -1,4 +1,4 @@
-name: productcatalogserviceci
+name: frontendci
 
 # Exclude the workflow to run on changes to the helm chart
 on:
@@ -11,12 +11,12 @@ on:
       - 'README.md'
       - 'src/adservice/**'
       - 'src/cartservice/**'
-      - 'src/checkoutservice/**'
+      - 'src/frontend/**'
       - 'src/currencyservice/**'
       - 'src/emailservice/**'
       - 'src/loadgenerator/**'
       - 'src/paymentservice/**'
-      - 'src/frontend/**'
+      - 'src/productcatalogservice/**'
       - 'src/recommendationservice/**'
       - 'src/shippingservice/**'
       - 'src/shoppingassistantservice/**'
@@ -36,12 +36,12 @@ jobs:
       with:
         go-version: 1.22
 
-    - name: Build product-catalog-service
-      working-directory: src/productcatalogservice
-      run: go build -o product-catalog-service
+    - name: Build checkout-service
+      working-directory: src/checkoutservice
+      run: go build -o checkout-service
 
     - name: Test
-      working-directory: src/productcatalogservice
+      working-directory: src/checkoutservice
       run: go test ./...
   
   # code-quality:
@@ -78,9 +78,9 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         context: .
-        file: ./src/productcatalogservice/Dockerfile
+        file: ./src/checkoutservice/Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/product-catalog-service:${{github.run_id}}
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/checkout-service:${{github.run_id}}
 
   update-newtag-in-helm-chart:
     runs-on: ubuntu-latest
@@ -95,7 +95,7 @@ jobs:
 
     - name: Update tag in Helm chart
       run: |
-        sed -i 's/productcatalogservicetag: .*/productcatalogservicetag: "${{github.run_id}}"/' helm/online-boutique-chart/values.yaml
+        sed -i 's/checkoutservicetag: .*/checkoutservicetag: "${{github.run_id}}"/' helm/online-boutique-chart/values.yaml
 
     - name: Commit and push changes
       run: |

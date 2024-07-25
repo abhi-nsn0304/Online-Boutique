@@ -11,6 +11,7 @@ on:
       - 'README.md'
       - 'src/adservice/**'
       - 'src/cartservice/**'
+      - 'src/checkoutservice/**'
       - 'src/currencyservice/**'
       - 'src/emailservice/**'
       - 'src/loadgenerator/**'
