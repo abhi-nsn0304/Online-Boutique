@@ -23,13 +23,13 @@ COPY src/frontend .
 
 # Skaffold passes in debug-oriented compiler flags
 ARG SKAFFOLD_GO_GCFLAGS
-RUN CGO_ENABLED=0 GOOS=linux go build -gcflags="${SKAFFOLD_GO_GCFLAGS}" -o /go/bin/frontend .
+RUN CGO_ENABLED=0 GOOS=linux go build -gcflags="${SKAFFOLD_GO_GCFLAGS}" -o /go/bin/frontendbinary .
 
 FROM scratch
 WORKDIR /src
-COPY --from=builder /go/bin/frontend /src/server
-COPY --from=builder /src/src/frontend/templates ./templates
-COPY --from=builder /src/src/frontend/static ./static
+COPY --from=builder /go/bin/frontendbinary /src/server
+COPY --from=builder /src/templates ./templates
+COPY --from=builder /src/static ./static
 
 # Definition of this variable is used by 'skaffold debug' to identify a golang binary.
 # Default behavior - a failure prints a stack trace for the current goroutine.

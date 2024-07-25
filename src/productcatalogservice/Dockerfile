@@ -16,20 +16,20 @@ FROM golang:1.22.5-alpine@sha256:8c9183f715b0b4eca05b8b3dbf59766aaedb41ec07477b1
 
 WORKDIR /src
 # restore dependencies
-COPY src/frontend/go.mod ./
-COPY src/frontend/go.sum ./
+COPY src/productcatalogservice/go.mod ./
+COPY src/productcatalogservice/go.sum ./
 RUN go mod download
-COPY src/frontend .
+COPY src/productcatalogservice .
 
 # Skaffold passes in debug-oriented compiler flags
 ARG SKAFFOLD_GO_GCFLAGS
-RUN CGO_ENABLED=0 GOOS=linux go build -gcflags="${SKAFFOLD_GO_GCFLAGS}" -o /productcatalogservice .
+RUN CGO_ENABLED=0 GOOS=linux go build -gcflags="${SKAFFOLD_GO_GCFLAGS}" -o /productcatalogservicebinary .
 
 FROM scratch
 
 WORKDIR /src
-COPY --from=builder /productcatalogservice ./server
-COPY --from=builder /src/src/productcatalogservice/products.json .
+COPY --from=builder /src/productcatalogservicebinary ./server
+COPY --from=builder /src/products.json .
 
 # Definition of this variable is used by 'skaffold debug' to identify a golang binary.
 # Default behavior - a failure prints a stack trace for the current goroutine.
