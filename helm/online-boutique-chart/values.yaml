@@ -9,7 +9,7 @@ image:
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   frontendtag: "10086307076"
-  productcatalogservicetag: ""
+  productcatalogservicetag: "10086359171"
 
 imagePullSecrets: []
 nameOverride: ""
