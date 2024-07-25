@@ -22,7 +22,7 @@ on:
       - 'src/shoppingassistantservice/**'
 
 jobs:
-  build-and-deploy:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
