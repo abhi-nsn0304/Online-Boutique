@@ -12,6 +12,7 @@ image:
   productcatalogservicetag: "10087057926"
   shippingservicetag: "10086867792"
   checkoutservicetag: "10087022992"
+  currencyservicetag: ""
 
 imagePullSecrets: []
 nameOverride: ""
