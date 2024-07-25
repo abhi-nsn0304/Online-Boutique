@@ -77,7 +77,7 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         context: .
-        file: src/productcatalogservice/Dockerfile
+        file: ./src/productcatalogservice/Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/product-catalog-service:${{github.run_id}}
 
