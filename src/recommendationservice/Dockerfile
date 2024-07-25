@@ -22,7 +22,7 @@ RUN apt-get -qq update \
     && rm -rf /var/lib/apt/lists/*
 
 # get packages
-COPY requirements.txt .
+COPY src/recommendationservice/requirements.txt .
 RUN pip install -r requirements.txt
 
 FROM base
@@ -36,7 +36,7 @@ WORKDIR /recommendationservice
 COPY --from=builder /usr/local/lib/python3.12/ /usr/local/lib/python3.12/
 
 # Add the application
-COPY . .
+COPY ./src/recommendationserviceservice/ .
 
 # set listen port
 ENV PORT "8080"
