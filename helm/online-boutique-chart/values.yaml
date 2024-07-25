@@ -8,7 +8,7 @@ image:
   repository: nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  frontendtag: "10086662805"
+  frontendtag: "10086913566"
   productcatalogservicetag: "10086690733"
   shippingservicetag: "10086867792"
   checkoutservicetag: ""
