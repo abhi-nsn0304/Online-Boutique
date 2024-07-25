@@ -45,8 +45,7 @@ jobs:
           context: .  # Use the current directory as the build context
           file: ./src/currencyservice/Dockerfile  # Path to your Dockerfile
           push: true
-          tags: |
-            your-dockerhub-username/your-image-name:${{ github.run_id }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/currency-service:${{github.run_id}}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
