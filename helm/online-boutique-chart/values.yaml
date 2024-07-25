@@ -10,7 +10,7 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   frontendtag: "10086662805"
   productcatalogservicetag: "10086690733"
-  shippingservicetag: "10086587574"
+  shippingservicetag: "10086838761"
   checkoutservicetag: ""
 
 imagePullSecrets: []
