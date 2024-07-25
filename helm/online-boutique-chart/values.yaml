@@ -14,7 +14,7 @@ image:
   checkoutservicetag: "10087022992"
   currencyservicetag: "10095968644"
   paymentservicetag: "10096215857"
-  cartservicetag: ""
+  cartservicetag: "10096881924"
 
 imagePullSecrets: []
 nameOverride: ""
