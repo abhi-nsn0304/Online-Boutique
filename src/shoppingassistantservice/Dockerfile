@@ -36,7 +36,7 @@ WORKDIR /shoppingassistantservice
 COPY --from=builder /usr/local/lib/python3.12/ /usr/local/lib/python3.12/
 
 # Add the application
-COPY ./src/shoppingassistantservice/ .
+COPY ./src/shoppingassistantservice/ ./
 
 # set listen port
 ENV PORT "8080"
