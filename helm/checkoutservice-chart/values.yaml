@@ -1,4 +1,4 @@
-# Default values for online-boutique-chart.
+# Default values for checkoutservice-chart.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -8,18 +8,7 @@ image:
   repository: nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  frontendtag: "10112123111" 
-  productcatalogservicetag: "10112188415"
-  shippingservicetag: "10112222129"
   checkoutservicetag: "10112028782"
-  currencyservicetag: "10112059331"
-  paymentservicetag: "10112858631"
-  cartservicetag: "10111922895"
-  emailservicetag: "10113138404"
-  recommendationservicetag: "10097705673"
-  loadgeneratortag: "10112775391"
-  adservicetag: "10112647553"
-  shoppingassistanttag: "10113233635"
 
 imagePullSecrets: []
 nameOverride: ""
