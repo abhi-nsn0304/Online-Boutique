@@ -18,7 +18,7 @@ image:
   emailservicetag: "10112093727"
   recommendationservicetag: "10097705673"
   loadgeneratortag: "10112627527"
-  adservicetag: "10112574066"
+  adservicetag: "10112647553"
 
 imagePullSecrets: []
 nameOverride: ""
