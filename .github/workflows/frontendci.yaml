@@ -1,26 +1,29 @@
 name: frontendci
 
+on: 
+  workflow_dispatch:
+
 # Exclude the workflow to run on changes to the helm chart
-on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - 'helm/**'
-      - 'k8s/**'
-      - '.github/workflows/**'
-      - 'README.md'
-      - 'src/adservice/**'
-      - 'src/cartservice/**'
-      - 'src/checkoutservice/**'
-      - 'src/currencyservice/**'
-      - 'src/emailservice/**'
-      - 'src/loadgenerator/**'
-      - 'src/paymentservice/**'
-      - 'src/productcatalogservice/**'
-      - 'src/recommendationservice/**'
-      - 'src/shippingservice/**'
-      - 'src/shoppingassistantservice/**'
+# on:
+#   push:
+#     branches:
+#       - main
+#     paths-ignore:
+#       - 'helm/**'
+#       - 'k8s/**'
+#       - '.github/workflows/**'
+#       - 'README.md'
+#       - 'src/adservice/**'
+#       - 'src/cartservice/**'
+#       - 'src/checkoutservice/**'
+#       - 'src/currencyservice/**'
+#       - 'src/emailservice/**'
+#       - 'src/loadgenerator/**'
+#       - 'src/paymentservice/**'
+#       - 'src/productcatalogservice/**'
+#       - 'src/recommendationservice/**'
+#       - 'src/shippingservice/**'
+#       - 'src/shoppingassistantservice/**'
 
 
 jobs:

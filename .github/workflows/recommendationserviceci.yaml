@@ -1,25 +1,28 @@
 name: recommendationserviceci
 
-on:
-  push:
-    branches:
-      - main  # Set the branch you want to trigger the workflow on
-    paths-ignore:
-      - 'helm/**'
-      - 'k8s/**'
-      - '.github/workflows/**'
-      - 'README.md'
-      - 'src/adservice/**'
-      - 'src/cartservice/**'
-      - 'src/checkoutservice/**'
-      - 'src/frontend/**'
-      - 'src/paymentservice/**'
-      - 'src/loadgenerator/**'
-      - 'src/currencyservice/**'
-      - 'src/productcatalogservice/**'
-      - 'src/emailservice/**'
-      - 'src/shippingservice/**'
-      - 'src/shoppingassistantservice/**'
+on: 
+  workflow_dispatch:
+
+# on:
+#   push:
+#     branches:
+#       - main  # Set the branch you want to trigger the workflow on
+#     paths-ignore:
+#       - 'helm/**'
+#       - 'k8s/**'
+#       - '.github/workflows/**'
+#       - 'README.md'
+#       - 'src/adservice/**'
+#       - 'src/cartservice/**'
+#       - 'src/checkoutservice/**'
+#       - 'src/frontend/**'
+#       - 'src/paymentservice/**'
+#       - 'src/loadgenerator/**'
+#       - 'src/currencyservice/**'
+#       - 'src/productcatalogservice/**'
+#       - 'src/emailservice/**'
+#       - 'src/shippingservice/**'
+#       - 'src/shoppingassistantservice/**'
 
 jobs:
   build-and-push:
