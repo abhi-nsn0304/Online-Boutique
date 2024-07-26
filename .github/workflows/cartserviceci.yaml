@@ -86,7 +86,7 @@ jobs:
 
     - name: Update tag in Helm chart
       run: |
-        sed -i 's/cartservicetag: .*/cartservicetag: "${{github.run_id}}"/' helm/online-boutique-chart/values.yaml
+        sed -i 's/cartservicetag: .*/cartservicetag: "${{github.run_id}}"/' helm/cartservice-chart/values.yaml
 
     - name: Commit and push changes
       run: |

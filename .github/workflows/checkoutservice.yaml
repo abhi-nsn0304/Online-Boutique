@@ -100,7 +100,7 @@ jobs:
 
     - name: Update tag in Helm chart
       run: |
-        sed -i 's/checkoutservicetag: .*/checkoutservicetag: "${{github.run_id}}"/' helm/online-boutique-chart/values.yaml
+        sed -i 's/checkoutservicetag: .*/checkoutservicetag: "${{github.run_id}}"/' helm/checkoutservice-chart/values.yaml
 
     - name: Commit and push changes
       run: |

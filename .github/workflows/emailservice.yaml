@@ -67,7 +67,7 @@ jobs:
 
     - name: Update tag in Helm chart
       run: |
-        sed -i 's/emailservicetag: .*/emailservicetag: "${{github.run_id}}"/' helm/online-boutique-chart/values.yaml
+        sed -i 's/emailservicetag: .*/emailservicetag: "${{github.run_id}}"/' helm/emailservice-chart/values.yaml
 
     - name: Commit and push changes
       run: |
