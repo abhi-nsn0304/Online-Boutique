@@ -16,12 +16,12 @@ FROM eclipse-temurin:21@sha256:3d92c3222b9d376e420e7099054604dc0d7bafbebbcb4f79f
 
 WORKDIR /app
 
-COPY ["build.gradle", "gradlew", "./"]
-COPY gradle gradle
+COPY ["src/adservice/build.gradle", "src/adservice/gradlew", "./"]
+COPY src/adservice/gradle gradle
 RUN chmod +x gradlew
 RUN ./gradlew downloadRepos
 
-COPY . .
+COPY src/adservice/ .
 RUN chmod +x gradlew
 RUN ./gradlew installDist
 
