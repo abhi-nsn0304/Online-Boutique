@@ -18,7 +18,7 @@ image:
   emailservicetag: "10113138404"
   recommendationservicetag: "10097705673"
   loadgeneratortag: "10112775391"
-  adservicetag: "10112647553"
+  adservicetag: "10114904041"
   shoppingassistanttag: "10113233635"
 
 imagePullSecrets: []
