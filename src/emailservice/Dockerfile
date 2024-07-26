@@ -23,6 +23,7 @@ RUN apt-get -qq update \
 
 # get packages
 COPY src/emailservice/requirements.txt .
+
 RUN pip install -r requirements.txt
 
 FROM base

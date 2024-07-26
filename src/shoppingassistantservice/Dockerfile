@@ -23,6 +23,7 @@ RUN apt-get -qq update \
 
 # get packages
 COPY src/shoppingassistantservice/requirements.txt .
+
 RUN pip install -r requirements.txt
 
 FROM base
@@ -36,7 +37,7 @@ WORKDIR /shoppingassistantservice
 COPY --from=builder /usr/local/lib/python3.12/ /usr/local/lib/python3.12/
 
 # Add the application
-COPY ./src/shoppingassistantservice/ ./
+COPY ./src/shoppingassistantservice/ .
 
 # set listen port
 ENV PORT "8080"
