@@ -30,6 +30,9 @@ FROM base
 # Enable unbuffered logging
 ENV PYTHONUNBUFFERED=1
 
+# Enable Profiler
+ENV ENABLE_PROFILER=1
+
 # get packages
 WORKDIR /shoppingassistantservice
 
