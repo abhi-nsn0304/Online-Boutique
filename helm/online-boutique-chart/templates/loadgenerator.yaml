@@ -64,7 +64,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: gcr.io/google-samples/microservices-demo/loadgenerator:v0.10.0
+        image: saikrishnareddy9100/loadgenerator-service:{{ .Values.image.loadgeneratortag }}
         env:
         - name: FRONTEND_ADDR
           value: "frontend:80"

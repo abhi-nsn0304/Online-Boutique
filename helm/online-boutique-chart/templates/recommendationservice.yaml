@@ -29,7 +29,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: gcr.io/google-samples/microservices-demo/recommendationservice:v0.10.0
+        image: saikrishnareddy9100/recommendation-service:{{ .Values.image.recommendationservicetag }}
         ports:
         - containerPort: 8080
         readinessProbe:

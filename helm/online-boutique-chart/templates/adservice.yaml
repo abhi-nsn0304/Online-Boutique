@@ -29,7 +29,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: gcr.io/google-samples/microservices-demo/adservice:v0.10.0
+        image: saikrishnareddy9100/adservice-service:{{ .Values.image.adservicetag }}
         ports:
         - containerPort: 9555
         env:
