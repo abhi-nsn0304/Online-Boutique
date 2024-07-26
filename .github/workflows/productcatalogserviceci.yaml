@@ -106,6 +106,6 @@ jobs:
       run: |
         git config --global user.email "saikrishnareddy9100@gmail.com"
         git config --global user.name "Pidemarla"
-        git add helm/online-boutique-chart/values.yaml
+        git add helm/productcatalogservice-chart/values.yaml
         git commit -m "Update tag in Helm chart"
         git push
