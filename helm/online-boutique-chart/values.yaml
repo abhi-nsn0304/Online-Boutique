@@ -19,6 +19,7 @@ image:
   recommendationservicetag: "10097705673"
   loadgeneratortag: "10112775391"
   adservicetag: "10112647553"
+  shoppingassistanttag: ""
 
 imagePullSecrets: []
 nameOverride: ""
