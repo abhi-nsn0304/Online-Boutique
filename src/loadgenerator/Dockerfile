@@ -16,6 +16,9 @@ FROM python:3.12.4-slim@sha256:f11725aba18c19664a408902103365eaf8013823ffc56270f
 
 FROM base as builder
 
+RUN apt-get update \
+    && apt-get install -y build-essential
+
 COPY src/recommendationservice/requirements.txt .
 
 RUN pip install --prefix="/install" -r requirements.txt
