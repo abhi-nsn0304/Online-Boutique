@@ -48,7 +48,7 @@ jobs:
           context: .  # Use the current directory as the build context
           file: ./src/adservice/Dockerfile  # Path to your Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/loadgenerator-service:${{github.run_id}}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/adservice-service:${{github.run_id}}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
