@@ -46,7 +46,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .  # Use the current directory as the build context
-          file: ./src/shoppingassistant/Dockerfile  # Path to your Dockerfile
+          file: ./src/shoppingassistantservice/Dockerfile  # Path to your Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/shoppingassistant-service:${{github.run_id}}
 
