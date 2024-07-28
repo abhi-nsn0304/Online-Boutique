@@ -35,7 +35,7 @@ WORKDIR /usr/src/app
 
 COPY --from=builder /usr/src/app/node_modules ./node_modules
 
-COPY . .
+COPY src/currencyservice/ .
 
 EXPOSE 50051
 
