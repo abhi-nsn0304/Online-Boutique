@@ -53,24 +53,16 @@ jobs:
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
 
-      # - name: SonarQube Analysis
-      #   env:
-      #     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      #   run: |
-      #     sonar-scanner \
-      #       -Dsonar.projectKey=Online-Boutique \
-      #       -Dsonar.sources=. \
-      #       -Dsonar.host.url=$SONAR_HOST_URL \
-      #       -Dsonar.login=$SONAR_TOKEN
-
-      - name: SonarQube Scan
-        uses: sonarsource/sonarcloud-action@v2
-        with:
-          token: ${{ secrets.SONAR_TOKEN }}
-          url: ${{ secrets.SONAR_HOST_URL }}
-          projectKey: Online-Boutique
-          projectName: Online-Boutique
+      - name: SonarQube Analysis
+        env:
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          sonar-scanner \
+            -Dsonar.projectKey=Online-Boutique \
+            -Dsonar.sources=. \
+            -Dsonar.host.url=$SONAR_HOST_URL \
+            -Dsonar.login=$SONAR_TOKEN
 
   update-newtag-in-helm-chart:
     runs-on: self-hosted
