@@ -27,7 +27,7 @@ on:
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout repository
@@ -74,7 +74,7 @@ jobs:
         run: docker system prune -af
     
   update-newtag-in-helm-chart:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     needs: build-and-push
 
