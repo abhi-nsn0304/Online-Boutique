@@ -27,7 +27,7 @@ on:
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout repository
@@ -55,7 +55,7 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
 
   update-newtag-in-helm-chart:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     needs: build-and-push
 
