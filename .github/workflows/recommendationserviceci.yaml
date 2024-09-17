@@ -61,6 +61,7 @@ jobs:
           path: ./src/recommendationservice/dependency-check-report
   build-and-push:
     runs-on: ubuntu-latest
+    needs: Owasp-dependency-check
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
