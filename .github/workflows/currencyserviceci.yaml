@@ -68,7 +68,7 @@ jobs:
 
   build-and-push:
     runs-on: self-hosted
-    needs: sonarqube-analysis
+    needs: dependency-check
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
