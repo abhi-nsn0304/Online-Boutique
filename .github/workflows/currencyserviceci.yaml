@@ -25,6 +25,26 @@ on:
 #       - 'src/shoppingassistantservice/**'
 
 jobs:
+  sonarqube-analysis:
+    runs-on: self-hosted
+    needs: build-and-push
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # - name: Set up SonarQube Scanner
+      #   uses: sonarsource/sonarcloud-github-action@v1
+      #   with:
+      #     token: ${{ secrets.SONAR_TOKEN }}
+
+      - name: SonarQube Scan
+        run: |
+          sonar-scanner \
+            -Dsonar.projectKey=CurrencyService \
+            -Dsonar.sources=./src/currencyservice \
+            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
   build-and-push:
     runs-on: self-hosted
 
