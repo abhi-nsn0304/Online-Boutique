@@ -53,52 +53,6 @@ jobs:
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
 
-      # - name: SonarQube Analysis
-      #   env:
-      #     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      #   run: |
-      #     sonar-scanner \
-      #       -Dsonar.projectKey=Online-Boutique \
-      #       -Dsonar.sources=. \
-      #       -Dsonar.host.url=$SONAR_HOST_URL \
-      #       -Dsonar.login=$SONAR_TOKEN
-
-      - name: Cache SonarQube scanner
-        uses: actions/cache@v3
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonarqube-${{ hashFiles('**/sonar-project.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-sonarqube-
-
-      - name: Install SonarQube Scanner
-        run: |
-          curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-6.1.0.4477-linux-x64.zip
-          unzip sonar-scanner.zip
-          sudo mv sonar-scanner-*/bin/sonar-scanner /usr/local/bin/
-          sudo chmod +x /usr/local/bin/sonar-scanner
-
-      - name: Analyze adservice
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          sonar-scanner \
-            -Dsonar.projectKey=adservice \
-            -Dsonar.host.url=${{ secrets.SONARQUBE_URL }} \
-            -Dsonar.login=$SONAR_TOKEN \
-            -Dsonar.sources=Online-Boutique/src/adservice/src
-
-      # - name: SonarQube Scan
-      #   uses: sonarsource/sonarqube-scan-action@master
-      #   with:
-      #     projectBaseDir: .
-      #     args: >
-      #       -Dsonar.projectKey=Online-Boutique
-      #   env:
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      #     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-
   update-newtag-in-helm-chart:
     runs-on: self-hosted
 
