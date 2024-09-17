@@ -64,7 +64,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dependency-check-report
-          path: ./dependency-check-report
+          path: ./src/currencyservice/dependency-check-report
 
   build-and-push:
     runs-on: self-hosted
