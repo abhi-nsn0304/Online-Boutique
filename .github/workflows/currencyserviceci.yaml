@@ -44,7 +44,7 @@ jobs:
             -Dsonar.sources=./src/currencyservice \
             -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-  dependency-check:
+  Owasp-dependency-check:
     runs-on: self-hosted
     needs: sonarqube-analysis
 
@@ -68,7 +68,7 @@ jobs:
 
   build-and-push:
     runs-on: self-hosted
-    needs: dependency-check
+    needs: Owasp-dependency-check
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
