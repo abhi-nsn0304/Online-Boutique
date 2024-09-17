@@ -41,10 +41,10 @@ jobs:
       - name: SonarQube Scan
         run: |
           sonar-scanner \
-            -Dsonar.projectKey=CurrencyService \
-            -Dsonar.sources=./src/currencyservice \
+            -Dsonar.projectKey=PaymentService \
+            -Dsonar.sources=./src/paymentservice \
             -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+            -Dsonar.login=${{ secrets.SONAR_PAYMENTSERVICE_TOKEN }}
   Owasp-dependency-check:
     runs-on: self-hosted
     needs: sonarqube-analysis
@@ -56,16 +56,16 @@ jobs:
       - name: Run OWASP Dependency-Check
         run: |
           dependency-check.sh \
-            --project CurrencyService \
-            --out ./src/currencyservice/dependency-check-report \
-            --scan ./src/currencyservice \
+            --project PaymentService \
+            --out ./src/paymentservice/dependency-check-report \
+            --scan ./src/paymentservice \
             --format "ALL"
 
       - name: Upload Dependency-Check Report
         uses: actions/upload-artifact@v3
         with:
           name: dependency-check-report
-          path: ./src/currencyservice/dependency-check-report
+          path: ./src/paymentservice/dependency-check-report
 
   build-and-push:
     runs-on: ubuntu-latest
@@ -104,14 +104,14 @@ jobs:
 
       - name: Scan Docker image with Trivy
         run: |
-          trivy image --no-progress --format table ${{ secrets.DOCKERHUB_USERNAME }}/currency-service:${{ github.run_id }}  > ./trivy-scan-results.txt
+          trivy image --no-progress --format table ${{ secrets.DOCKERHUB_USERNAME }}/payment-service:${{ github.run_id }}  > ./trivy-scan-results.txt
 
       - name: Upload Trivy scan results
         uses: actions/upload-artifact@v3
         with:
           name: trivy-scan-results
           path: ./trivy-scan-results.txt
-          
+
   update-newtag-in-helm-chart:
     runs-on: ubuntu-latest
 
