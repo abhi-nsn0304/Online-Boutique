@@ -104,13 +104,13 @@ jobs:
 
       - name: Scan Docker image with Trivy
         run: |
-          trivy image --no-progress --format table ${{ secrets.DOCKERHUB_USERNAME }}/currency-service:${{ github.run_id }}
+          trivy image --no-progress --format table ${{ secrets.DOCKERHUB_USERNAME }}/currency-service:${{ github.run_id }}  > ./trivy-scan-results.txt
 
       - name: Upload Trivy scan results
         uses: actions/upload-artifact@v3
         with:
           name: trivy-scan-results
-          path: ./trivy-scan-results
+          path: ./trivy-scan-results.txt
 
   update-newtag-in-helm-chart:
     runs-on: self-hosted
