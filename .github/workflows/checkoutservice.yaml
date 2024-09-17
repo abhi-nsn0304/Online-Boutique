@@ -41,6 +41,7 @@ jobs:
             -Dsonar.login=${{ secrets.SONAR_CHECKOUTSERVICE_TOKEN }}
   build:
     runs-on: self-hosted
+    needs: sonarqube-analysis
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -99,7 +100,7 @@ jobs:
           path: ./trivy-scan-results.txt
   update-newtag-in-helm-chart:
     runs-on: self-hosted
-    needs: push
+    needs: trivy-scan
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
