@@ -46,7 +46,7 @@ jobs:
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
   dependency-check:
     runs-on: self-hosted
-    needs: build-and-push
+    needs: sonarqube-analysis
 
     steps:
       - name: Checkout repository
