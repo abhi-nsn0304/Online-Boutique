@@ -99,7 +99,7 @@ jobs:
           path: ./trivy-scan-results.txt
   update-newtag-in-helm-chart:
     runs-on: self-hosted
-    needs: build-and-push
+    needs: trivy-scan
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
