@@ -36,7 +36,7 @@ jobs:
       #     token: ${{ secrets.SONAR_TOKEN }}
       - name: SonarQube Scan
         run: |
-          sonar-scanner \
+          sonar-scanner -X \
             -Dsonar.projectKey=AdService \
             -Dsonar.sources=./src/main/java \
             -Dsonar.java.binaries=./build/classes/java/main/hipstershop \
