@@ -1,0 +1,2 @@
+src/main/java/hipstershop/AdServiceClient.java,1721837735256828000,3864,INVALID
+src/main/java/hipstershop/AdService.java,1721837735256828000,7891,INVALID
