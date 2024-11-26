@@ -90,8 +90,8 @@ jobs:
 
     - name: Commit and push changes
       run: |
-        git config --global user.email "saikrishnareddy9100@gmail.com"
-        git config --global user.name "Pidemarla"
+        git config --global user.email "nsnnln@gmail.com"
+        git config --global user.name "abhi-nsn0304"
         git add helm/cartservice-chart/values.yaml
         git commit -m "Update tag in Helm chart"
         git push
