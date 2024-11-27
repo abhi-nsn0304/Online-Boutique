@@ -29,7 +29,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: saikrishnareddy9100/currency-service:{{ .Values.image.currencyservicetag }}
+        image: abhi-nsn0304/currency-service:{{ .Values.image.currencyservicetag }}
         ports:
         - name: grpc
           containerPort: 7000

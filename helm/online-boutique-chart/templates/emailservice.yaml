@@ -29,7 +29,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: saikrishnareddy9100/email-service:{{ .Values.image.emailservicetag }}
+        image: abhi-nsn0304/email-service:{{ .Values.image.emailservicetag }}
         ports:
         - containerPort: 8080
         env:

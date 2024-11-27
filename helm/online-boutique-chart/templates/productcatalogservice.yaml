@@ -29,7 +29,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: saikrishnareddy9100/product-catalog-service:{{ .Values.image.productcatalogservicetag }}
+        image: abhi-nsn0304/product-catalog-service:{{ .Values.image.productcatalogservicetag }}
         ports:
         - containerPort: 3550
         env:

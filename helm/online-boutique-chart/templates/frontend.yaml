@@ -30,7 +30,7 @@ spec:
                 - ALL
             privileged: false
             readOnlyRootFilesystem: true
-          image: saikrishnareddy9100/frontend-service:{{ .Values.image.frontendtag }}
+          image: abhi-nsn0304/frontend-service:{{ .Values.image.frontendtag }}
           ports:
           - containerPort: 8080
           readinessProbe:

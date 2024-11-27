@@ -64,7 +64,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: saikrishnareddy9100/loadgenerator-service:{{ .Values.image.loadgeneratortag }}
+        image: abhi-nsn0304/loadgenerator-service:{{ .Values.image.loadgeneratortag }}
         env:
         - name: FRONTEND_ADDR
           value: "frontend:80"
