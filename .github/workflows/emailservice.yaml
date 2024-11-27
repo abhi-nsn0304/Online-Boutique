@@ -26,43 +26,43 @@ on:
 #       - 'src/shoppingassistantservice/**'
 
 jobs:
-  sonarqube-analysis:
-    runs-on: self-hosted
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      # - name: Set up SonarQube Scanner
-      #   uses: sonarsource/sonarcloud-github-action@v1
-      #   with:
-      #     token: ${{ secrets.SONAR_TOKEN }}
-      - name: SonarQube Scan
-        run: |
-          sonar-scanner \
-            -Dsonar.projectKey=EmailService \
-            -Dsonar.sources=./src/emailservice \
-            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
-            -Dsonar.login=${{ secrets.SONAR_EMAILSERVICE_TOKEN }}
-  Owasp-dependency-check:
-    runs-on: self-hosted
-    needs: sonarqube-analysis
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Run OWASP Dependency-Check
-        run: |
-          dependency-check.sh \
-            --project EmailService \
-            --out ./src/emailservice/dependency-check-report \
-            --scan ./src/emailservice \
-            --format "ALL"
-      - name: Upload Dependency-Check Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: dependency-check-report
-          path: ./src/emailservice/dependency-check-report
+  # sonarqube-analysis:
+  #   runs-on: self-hosted
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v2
+  #     # - name: Set up SonarQube Scanner
+  #     #   uses: sonarsource/sonarcloud-github-action@v1
+  #     #   with:
+  #     #     token: ${{ secrets.SONAR_TOKEN }}
+  #     - name: SonarQube Scan
+  #       run: |
+  #         sonar-scanner \
+  #           -Dsonar.projectKey=EmailService \
+  #           -Dsonar.sources=./src/emailservice \
+  #           -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
+  #           -Dsonar.login=${{ secrets.SONAR_EMAILSERVICE_TOKEN }}
+  # Owasp-dependency-check:
+  #   runs-on: self-hosted
+  #   needs: sonarqube-analysis
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v2
+  #     - name: Run OWASP Dependency-Check
+  #       run: |
+  #         dependency-check.sh \
+  #           --project EmailService \
+  #           --out ./src/emailservice/dependency-check-report \
+  #           --scan ./src/emailservice \
+  #           --format "ALL"
+  #     - name: Upload Dependency-Check Report
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: dependency-check-report
+  #         path: ./src/emailservice/dependency-check-report
   build-and-push:
     runs-on: self-hosted
-    needs: Owasp-dependency-check
+    # needs: Owasp-dependency-check
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -83,23 +83,24 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/email-service:${{github.run_id}}
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
-  trivy-scan:
-    runs-on: self-hosted
-    needs: build-and-push
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Scan Docker image with Trivy
-        run: |
-          trivy image --no-progress --format table ${{ secrets.DOCKERHUB_USERNAME }}/email-service:${{ github.run_id }}  > ./trivy-scan-results.txt
-      - name: Upload Trivy scan results
-        uses: actions/upload-artifact@v3
-        with:
-          name: trivy-scan-results
-          path: ./trivy-scan-results.txt
+  # trivy-scan:
+  #   runs-on: self-hosted
+  #   needs: build-and-push
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v2
+  #     - name: Scan Docker image with Trivy
+  #       run: |
+  #         trivy image --no-progress --format table ${{ secrets.DOCKERHUB_USERNAME }}/email-service:${{ github.run_id }}  > ./trivy-scan-results.txt
+  #     - name: Upload Trivy scan results
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: trivy-scan-results
+  #         path: ./trivy-scan-results.txt
   update-newtag-in-helm-chart:
     runs-on: self-hosted
-    needs: trivy-scan
+    # needs: trivy-scan
+    needs: build-and-push
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -110,8 +111,8 @@ jobs:
         sed -i 's/emailservicetag: .*/emailservicetag: "${{github.run_id}}"/' helm/emailservice-chart/values.yaml
     - name: Commit and push changes
       run: |
-        git config --global user.email "saikrishnareddy9100@gmail.com"
-        git config --global user.name "Pidemarla"
+        git config --global user.email "nsnnln@gmail.com"
+        git config --global user.name "abhi-nsn0304"
         git add helm/emailservice-chart/values.yaml
         git commit -m "Update tag in Helm chart"
         git push

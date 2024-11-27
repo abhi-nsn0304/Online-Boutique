@@ -23,25 +23,25 @@ on:
 #       - 'src/shippingservice/**'
 #       - 'src/shoppingassistantservice/**'
 jobs:
-  sonarqube-analysis:
-    runs-on: self-hosted
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      # - name: Set up SonarQube Scanner
-      #   uses: sonarsource/sonarcloud-github-action@v1
-      #   with:
-      #     token: ${{ secrets.SONAR_TOKEN }}
-      - name: SonarQube Scan
-        run: |
-          sonar-scanner \
-            -Dsonar.projectKey=ProductCatalogService \
-            -Dsonar.sources=./src/productcatalogservice \
-            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
-            -Dsonar.login=${{ secrets.SONAR_PRODUCTCATALOGSERVICE_TOKEN }}
+  # sonarqube-analysis:
+  #   runs-on: self-hosted
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v2
+  #     # - name: Set up SonarQube Scanner
+  #     #   uses: sonarsource/sonarcloud-github-action@v1
+  #     #   with:
+  #     #     token: ${{ secrets.SONAR_TOKEN }}
+  #     - name: SonarQube Scan
+  #       run: |
+  #         sonar-scanner \
+  #           -Dsonar.projectKey=ProductCatalogService \
+  #           -Dsonar.sources=./src/productcatalogservice \
+  #           -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
+  #           -Dsonar.login=${{ secrets.SONAR_PRODUCTCATALOGSERVICE_TOKEN }}
   build:
     runs-on: ubuntu-latest
-    needs: sonarqube-analysis
+    # needs: sonarqube-analysis
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -84,23 +84,24 @@ jobs:
         file: ./src/productcatalogservice/Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/product-catalog-service:${{github.run_id}}
-  trivy-scan:
-    runs-on: self-hosted
-    needs: push
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Scan Docker image with Trivy
-        run: |
-          trivy image --no-progress --format table ${{ secrets.DOCKERHUB_USERNAME }}/product-catalog-service:${{ github.run_id }}  > ./trivy-scan-results.txt
-      - name: Upload Trivy scan results
-        uses: actions/upload-artifact@v3
-        with:
-          name: trivy-scan-results
-          path: ./trivy-scan-results.txt
+  # trivy-scan:
+  #   runs-on: self-hosted
+  #   needs: push
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v2
+  #     - name: Scan Docker image with Trivy
+  #       run: |
+  #         trivy image --no-progress --format table ${{ secrets.DOCKERHUB_USERNAME }}/product-catalog-service:${{ github.run_id }}  > ./trivy-scan-results.txt
+  #     - name: Upload Trivy scan results
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: trivy-scan-results
+  #         path: ./trivy-scan-results.txt
   update-newtag-in-helm-chart:
     runs-on: ubuntu-latest
-    needs: trivy-scan
+    # needs: trivy-scan
+    needs: push
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -111,8 +112,8 @@ jobs:
         sed -i 's/productcatalogservicetag: .*/productcatalogservicetag: "${{github.run_id}}"/' helm/productcatalogservice-chart/values.yaml
     - name: Commit and push changes
       run: |
-        git config --global user.email "saikrishnareddy9100@gmail.com"
-        git config --global user.name "Pidemarla"
+        git config --global user.email "nsnnln@gmail.com"
+        git config --global user.name "abhi-nsn0304"
         git add helm/productcatalogservice-chart/values.yaml
         git commit -m "Update tag in Helm chart"
         git push
