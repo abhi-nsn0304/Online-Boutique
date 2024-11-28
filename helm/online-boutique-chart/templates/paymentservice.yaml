@@ -29,7 +29,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: abhi-nsn0304/payment-service:{{ .Values.image.paymentservicetag }}
+        image: abhinsn0304/payment-service:{{ .Values.image.paymentservicetag }}
         ports:
         - containerPort: 50051
         env:

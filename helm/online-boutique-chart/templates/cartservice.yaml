@@ -29,7 +29,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: abhi-nsn0304/cart-service:{{ .Values.image.cartservicetag }}
+        image: abhinsn0304/cart-service:{{ .Values.image.cartservicetag }}
         ports:
         - containerPort: 7070
         env:

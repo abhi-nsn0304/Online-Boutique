@@ -28,7 +28,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: abhi-nsn0304/shipping-service:{{ .Values.image.shippingservicetag }}
+        image: abhinsn0304/shipping-service:{{ .Values.image.shippingservicetag }}
         ports:
         - containerPort: 50051
         env:

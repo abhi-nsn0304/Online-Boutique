@@ -29,7 +29,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: abhi-nsn0304/recommendation-service:{{ .Values.image.recommendationservicetag }}
+        image: abhinsn0304/recommendation-service:{{ .Values.image.recommendationservicetag }}
         ports:
         - containerPort: 8080
         readinessProbe:

@@ -28,7 +28,7 @@ spec:
                 - ALL
             privileged: false
             readOnlyRootFilesystem: true
-          image: abhi-nsn0304/checkout-service:{{ .Values.image.checkoutservicetag }}
+          image: abhinsn0304/checkout-service:{{ .Values.image.checkoutservicetag }}
           ports:
           - containerPort: 5050
           readinessProbe:
