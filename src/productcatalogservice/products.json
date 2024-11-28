@@ -98,8 +98,8 @@
         },
         {
             "id": "6E92ZMYYFZ",
-            "name": "Mug",
-            "description": "A simple mug with a mustard interior.",
+            "name": "Cup",
+            "description": "A simple cup with a mustard interior.",
             "picture": "/static/img/products/mug.jpg",
             "priceUsd": {
                 "currencyCode": "USD",
